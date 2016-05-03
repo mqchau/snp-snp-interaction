@@ -1,0 +1,2 @@
+apriori on 500k snp:
+    2700 seconds
