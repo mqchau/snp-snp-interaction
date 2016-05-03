@@ -11,7 +11,7 @@ import numpy as np
 from random import randint
 
 if __name__ == "__main__":
-    num_snp = 200
+    num_snp = 100
     num_case = 100
     num_control = 100
     target_snp = [10,15]
