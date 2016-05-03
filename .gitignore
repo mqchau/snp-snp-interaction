@@ -117,3 +117,4 @@ vignettes/*.pdf
 
 # vim temp file
 *.swp
+datafile/*
