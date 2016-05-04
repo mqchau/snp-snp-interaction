@@ -9,27 +9,24 @@
 # --------------------------------------------------
 import numpy as np
 from random import randint
+import random
 
 if __name__ == "__main__":
     num_snp = 100
     num_case = 100
-    num_control = 100
+    percent_perfect_correlation = 0.9
     target_snp = [10,15]
 
-    data_array = np.zeros((num_case + num_control, num_snp + 1), dtype=np.uint8)
+    data_array = np.zeros((num_case, num_snp), dtype=np.uint8)
 
-    # generate the control sample
-    for i in range(num_control):
-        for j in range(num_snp):
-            data_array[i,j] = randint(0,1)
-        data_array[i,num_snp] = 0
-
-    # generate the case sample
+    # generate the case sample, control sample are not necessary
     # for now let's just assume snp1 and snp2 must be 1,1 together to activate
     for i in range(num_case):
         for j in range(num_snp):
-            data_array[i+num_control,j] = randint(0,1) if j not in target_snp else 1
-        data_array[i+num_control,num_snp] = 1
+            if j not in target_snp or random.random() > percent_perfect_correlation:
+                data_array[i,j] = randint(0,1) 
+            else:
+                data_array[i,j] = 1
 
     np.savetxt("datafile/sample1.csv", data_array, delimiter=",", fmt='%i')
     
